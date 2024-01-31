@@ -1,0 +1,60 @@
+extends layouts/main.pug
+
+block content
+    
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span> Employee 
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            a(href="/addemployee" , class="btn btn-success btn-sm") New Employee 
+             
+            <table id="example" class="display" style="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th> 
+                        <th>Phone</th> 
+                        <th>IsActive</th> 
+                        <th>Edit</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    each emp in employees
+                        <tr>
+                            <td>#{emp.name}</td>
+                            <td>#{emp.email}</td>
+                            <td>#{emp.phone}</td>
+                            if emp.isactive == 1
+                                <td>YES</td>
+                            else
+                                <td>No</td>
+                            td
+                                a(href=`/editemployee?id=${emp.id}`, class="btn btn-warning btn-sm") Edit
+                                 
+                        </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+       
+        
+        
+        <script>
+            |window.onload = function(){
+            |   $('#example').DataTable();
+            |};
+        </script>
+

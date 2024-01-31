@@ -1,0 +1,47 @@
+extends layouts/main.pug
+
+block content
+ 
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span> Dashboard
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+             <table id="example" class="display" style="100%">
+                <thead>
+                    <tr>
+                        <th>category Name</th>
+                        <th>Count</th> 
+                        <th>Action</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    each iss in issues
+                        <tr>
+                            <td>#{iss.categoryname}</td>
+                            <td>#{iss.count}</td>
+                            td
+                                a(href=`/addissue`, class="btn btn-warning btn-sm") Add issue
+                                 
+                        </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div> 
+    <script>
+            |window.onload = function(){
+            |   $('#example').DataTable();
+            |};
+    </script>

@@ -1,0 +1,56 @@
+extends layouts/main.pug
+
+block content
+    
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span> Asset Category Master 
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            a(href="/addcategory" , class="btn btn-success btn-sm") New Asset Category 
+             
+            <table id="example" class="display" style="100%">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>IsActive</th> 
+                        <th>Edit</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    each cat in categories
+                        <tr>
+                            <td>#{cat.categoryname}</td>
+                            if cat.isactive == 1
+                                <td>YES</td>
+                            else
+                                <td>No</td>
+                            td
+                                a(href=`/editcategory?id=${cat.id}`, class="btn btn-warning btn-sm") Edit
+                                 
+                        </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+       
+        
+        
+        <script>
+            |window.onload = function(){
+            |   $('#example').DataTable();
+            |};
+        </script>
+

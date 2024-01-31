@@ -1,0 +1,81 @@
+extends layouts/main.pug
+
+block content
+    
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span> Asset  Master 
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            a(href="/addasset" , class="btn btn-success btn-sm") New Asset  
+             
+            <table id="example" class="display" style="100%">
+                <thead>
+                    <tr>
+                        <th>Seraial No</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Purchase Cost</th>
+                        <th>Purchase Date</th>
+                        <th>Supplier Name</th>
+                        <th>Category Name</th>
+                        <th>IsActive</th> 
+                        <th>Edit</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    if assets.length > 0    
+                        each asset in assets
+                            <tr>
+                                <td>#{asset.serialno}</td>
+                                <td>#{asset.make}</td>
+                                <td>#{asset.model}</td>
+                                <td>#{asset.purchasecost}</td>
+                                <td>#{asset.purchasedate}</td>
+                                <td>#{asset.supplier}</td>
+                                <td>#{asset.category.categoryname}</td>
+                                if asset.isactive == 1
+                                    <td>YES</td>
+                                else
+                                    <td>No</td>
+                                td
+                                    a(href=`/editasset?id=${asset.id}`, class="btn btn-warning btn-sm") Edit
+                                    
+                            </tr>
+                    else
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>No Record Found</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>    
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+       
+        
+        
+        <script>
+            |window.onload = function(){
+            |   $('#example').DataTable();
+            |};
+        </script>
+

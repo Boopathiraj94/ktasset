@@ -1,0 +1,76 @@
+extends layouts/main.pug
+
+block content
+    
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span> Edit Return 
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    if msg
+                        div(class="alert alert-danger") #{msg}
+                    <h4 class="card-title">Return Form</h4> 
+                     form(class="forms-sample" action=`/editreturn?id=${datas.id}` method="post")
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">employee Name</label>
+                            <div class="col-sm-9">
+                            select(name="employeeId", class="form-control", placeholder="employee name", required)
+                                    if employees.length > 0
+                                        option(value="") select employee 
+                                        each emp in  employees 
+                                            option(value=`${emp.id}`  selected=(emp.id === datas.employeeId)) #{emp.name}  
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Asset Name</label>
+                            <div class="col-sm-9">
+                            select(name="assetId", class="form-control", placeholder="Asset name", required)
+                                    if assets.length > 0
+                                        option(value="") select Return 
+                                        each ast in  assets 
+                                            option(value=`${ast.id}` selected=(ast.id === datas.assetmasterId)) #{ast.serialno} -  #{ast.make} - #{ast.model}  
+                                    else 
+                                        option(value="") No Return 
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Return Type</label>
+                            <div class="col-sm-9">
+                            select(name="returnstatus", class="form-control", placeholder="Asset name", required)
+                                    option(value="") select type
+                                    option(value="UPGRADE"  selected=("UPGRADE" === datas.returnstatus)) UPGRADE
+                                    option(value="REPAIR"   selected=("REPAIR" === datas.returnstatus)) REPAIR
+                                    option(value="RESIGNATION" selected=("RESIGNATION" === datas.returnstatus)) RESIGNATION
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Reason</label>
+                            <div class="col-sm-9">
+                            input(type="text" name="reason" class="form-control" id="exampleInputEmail2" placeholder="Reason" required value=`${datas.reason}`)
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                        <a href="/returnview" class="btn btn-light">Cancel</a>
+                    </form>
+                  </div>
+                </div>
+            </div> 
+        </div>
+    </div> 
+    

@@ -1,0 +1,61 @@
+extends layouts/main.pug
+
+block content
+    
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i class="mdi mdi-home"></i>
+                    </span>  Asset History
+                </h3>
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+           
+             
+            <table id="example" class="display" style="100%">
+                <thead>
+                    <tr>
+                        <th>employee Name</th>
+                        <th>Asset Name</th>
+                        <th>Status</th>
+                        <th>Return Status</th>
+                        <th>Reason</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    each iss in assets
+                        -var currentDate = new Date(iss.addedat);
+                        -var formattedDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                        <tr>
+                            <td>#{iss.employee.name}</td>
+                            <td>#{iss.assetmaster.serialno} - #{iss.assetmaster.model} - #{iss.assetmaster.make}</td>
+                            <td>#{iss.status}</td>
+                            <td>#{iss.returnstatus}</td>
+                            <td>#{iss.reason}</td>
+                            <td>#{formattedDate}</td>
+                        </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+       
+        
+        
+        <script>
+            |window.onload = function(){
+            |   $('#example').DataTable({
+            |    "ordering": false,
+            |   });
+            |};
+        </script>
+
